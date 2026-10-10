@@ -100,6 +100,11 @@ export async function createGameServer({
   };
   const bound = new Map(); // profileId -> {socketId, tab}: which connection is currently playing with it
 
+  // The server moved a player (a duel, a climb out of the water, a rescue): they snap there, and so does their picture on the other screen.
+  const showAt = (p) => {
+    if (p.socketId) io.to(p.socketId).emit('player:correct', { x: p.x, y: p.y });
+    for (const other of rooms.neighbours(p)) io.to(other.socketId).emit('player:state', { pid: p.pid, x: p.x, y: p.y, facing: p.facing, moving: false, t: performance.now() });
+  };
   const players = new Map(); // pid -> room player, so fishing events can find the room/socket/profile
   const inventoryTo = (socketId, profileId) => socketId && io.to(socketId).emit('inv:state', economy.state(profileId));
 
@@ -177,7 +182,7 @@ export async function createGameServer({
       }
       for (const p of crew) if (p.socketId) io.to(p.socketId).emit('boat:tilt', { tilt: 0 });
     },
-    onMoved: (p) => p.socketId && io.to(p.socketId).emit('player:correct', { x: p.x, y: p.y }),
+    onMoved: (p) => showAt(p),
     hatOf: (p) => {
       if (p.hat === undefined) p.hat = (p.profileId && store.getProfile(p.profileId)?.equipped.hat) || null;
       return p.hat === 'hat_none' ? null : p.hat;
@@ -220,7 +225,7 @@ export async function createGameServer({
     config: { ...DUEL, ...duelOption },
     emit: (p, event, payload) => {
       if (event === 'duel:moved') {
-        if (p.socketId) io.to(p.socketId).emit('player:correct', payload);
+        showAt(p);
         return;
       }
       if (p.socketId) io.to(p.socketId).emit(event, payload);

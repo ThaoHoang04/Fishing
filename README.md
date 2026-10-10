@@ -16,6 +16,19 @@ reeling fights, steals, bosses and duels are all validated or simulated on the s
 - Mischief (opt-in with FIGHT mode): slap / push / bonk, an anger meter with a big push, thrown fish, swimming and rescues, fish stealing, solo **duels in a boxing arena**
 - Touch controls (stick + moba-style skill cluster) and a skill bar for PC; chat with quick phrases; synthesised sound and music (no audio files)
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Sunset Lake](screenshots/lake.png) | ![Open Ocean](screenshots/ocean.png) |
+| **Sunset Lake**: the pier, the market stall and the duel arena | **Open Ocean**: sail, fish in the zones, board your friend's boat |
+| ![Frozen Bay](screenshots/frozen-bay.png) | ![Duel in the arena](screenshots/arena-duel.png) |
+| **Frozen Bay**: a third map with its own fish and legendary | **Duel in the arena**, with the PC skill bar (bottom right) |
+| ![Fight skills on a phone](screenshots/mobile-fight.png) | ![Lobby](screenshots/lobby.png) |
+| **On a phone**: stick on the left, moba-style skill cluster on the right | **Lobby**: create a room, share the 4-letter code |
+
+Screenshots show the third-party pixel art credited in `credits/ASSET_LICENSES.md` (Vryell, PinkSamurai, rio1222, dardasaba).
+
 ## Quick start
 
 Requires Node.js 20+.
