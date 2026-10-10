@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+vendor/
+data/
+# art packs forbid redistributing their source files: fetch them with tools/fetch_assets.py
+public/assets/
+credits/terms/
+credits/asset_manifest.json
+Docs/
+tools/__pycache__/
+.claude/

@@ -1,0 +1,26 @@
+{
+  "name": "fishing-together",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n web,srv -c cyan,magenta \"vite\" \"node --watch server/index.js\"",
+    "dev:web": "vite",
+    "dev:server": "node --watch server/index.js",
+    "build": "vite build",
+    "start": "vite build && node server/index.js",
+    "test": "node --test tests/"
+  },
+  "dependencies": {
+    "compression": "^1.8.2",
+    "express": "^5.2.1",
+    "phaser": "^4.2.1",
+    "socket.io": "^4.8.4",
+    "socket.io-client": "^4.8.4",
+    "sql.js": "^1.14.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.4",
+    "vite": "^6.4.3"
+  }
+}
